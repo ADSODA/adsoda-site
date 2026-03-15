@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADSODA AI Consulting — Automation, Compliance & Growth</title>
+  <meta
+    name="description"
+    content="ADSODA AI Consulting helps transportation businesses improve operations, automation, compliance workflows, and decision-making with practical AI systems."
+  />
+  <style>
+    :root{
+      --bg:#0A1628;
+      --bg-2:#0f1f3d;
+      --bg-3:#162545;
+      --card:#101f38;
+      --text:#ffffff;
+      --muted:#a9b6c9;
+      --muted-2:#c9d2df;
+      --accent:#F5A623;
+      --accent-2:#d88f1d;
+      --border:rgba(245,166,35,.18);
+      --success:#2ecc71;
+      --danger:#ff6b6b;
+      --shadow:0 16px 50px rgba(0,0,0,.28);
+      --radius:18px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(245,166,35,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,.035) 1px, transparent 1px);
+      background-size:56px 56px;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    section{position:relative;z-index:1}
+    .container{max-width:var(--max);margin:0 auto;padding:0 22px}
+    .section{padding:92px 0}
+    .section-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--accent);
+      border:1px solid var(--border);
+      padding:8px 12px;
+      border-radius:999px;
+      margin-bottom:18px;
+      background:rgba(245,166,35,.06);
+    }
+    .section-tag::before{
+      content:"";
+      width:7px;height:7px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 0 rgba(245,166,35,.65);
+      animation:pulse 1.8s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(245,166,35,.6)}
+      70%{box-shadow:0 0 0 12px rgba(245,166,35,0)}
+      100%{box-shadow:0 0 0 0 rgba(245,166,35,0)}
+    }
+
+    .title{
+      font-size:clamp(34px,6vw,64px);
+      line-height:.98;
+      letter-spacing:-.03em;
+      margin-bottom:18px;
+      max-width:980px;
+    }
+    .title .accent{color:var(--accent)}
+    .sub{
+      color:var(--muted-2);
+      font-size:clamp(16px,2vw,20px);
+      max-width:760px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 24px;
+      border-radius:12px;
+      border:1px solid transparent;
+      font-weight:700;
+      transition:.22s ease;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#10151f;
+      box-shadow:0 10px 30px rgba(245,166,35,.28);
+    }
+    .btn-primary:hover{
+      background:var(--accent-2);
+      transform:translateY(-2px);
+    }
+    .btn-secondary{
+      border:1px solid var(--border);
+      color:var(--text);
+      background:rgba(255,255,255,.03);
+    }
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.06);
+      transform:translateY(-2px);
+    }
+
+    /* NAV */
+    .nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(10,22,40,.86);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:.25s ease;
+    }
+    .nav.scrolled{box-shadow:0 12px 35px rgba(0,0,0,.16)}
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .logo{
+      font-weight:900;
+      font-size:24px;
+      letter-spacing:.02em;
+    }
+    .logo span{color:var(--accent)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      list-style:none;
+    }
+    .nav-links a{
+      font-size:14px;
+      color:var(--muted-2);
+      transition:.2s ease;
+    }
+    .nav-links a:hover{color:var(--accent)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .burger{
+      display:none;
+      background:none;
+      border:none;
+      width:44px;height:44px;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .burger-lines,
+    .burger-lines::before,
+    .burger-lines::after{
+      display:block;
+      width:22px;height:2px;
+      background:#fff;
+      border-radius:2px;
+      position:relative;
+      transition:.25s ease;
+      content:"";
+    }
+    .burger-lines::before{position:absolute;top:-7px}
+    .burger-lines::after{position:absolute;top:7px}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:140px 0 80px;
+      overflow:hidden;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:34px;
+      align-items:center;
+    }
+    .hero-copy{position:relative;z-index:2}
+    .hero-copy .lead{
+      color:var(--muted-2);
+      font-size:18px;
+      max-width:760px;
+      margin-bottom:28px;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin:30px 0 26px;
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:24px;
+    }
+    .hero-point{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:16px;
+      padding:16px 16px;
+      box-shadow:var(--shadow);
+    }
+    .hero-point strong{
+      display:block;
+      color:var(--accent);
+      margin-bottom:6px;
+      font-size:18px;
+    }
+
+    .hero-side{
+      position:relative;
+      z-index:2;
+    }
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:26px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -120px -120px auto;
+      width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(245,166,35,.18), rgba(245,166,35,0) 70%);
+      pointer-events:none;
+    }
+    .mini-label{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--accent);
+      background:rgba(245,166,35,.08);
+      border:1px solid var(--border);
+      margin-bottom:18px;
+    }
+    .hero-card h3{
+      font-size:28px;
+      margin-bottom:10px;
+    }
+    .hero-card p{color:var(--muted-2)}
+    .check-list{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin:22px 0 0;
+    }
+    .check-list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted-2);
+    }
+    .check-list li::before{
+      content:"✓";
+      color:var(--accent);
+      font-weight:900;
+      margin-top:1px;
+    }
+
+    /* STATS */
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:36px;
+    }
+    .stat{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.07);
+      padding:22px;
+      border-radius:18px;
+      text-align:center;
+    }
+    .stat-num{
+      font-size:clamp(28px,4vw,42px);
+      font-weight:900;
+      color:var(--accent);
+      line-height:1;
+      margin-bottom:8px;
+    }
+    .stat-text{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* WHY US */
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .card-icon{
+      width:54px;height:54px;border-radius:14px;
+      display:grid;place-items:center;
+      background:rgba(245,166,35,.1);
+      border:1px solid var(--border);
+      color:var(--accent);
+      font-size:24px;
+      margin-bottom:18px;
+    }
+    .card h3{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+    .card p{color:var(--muted-2)}
+
+    /* RESULT STRIP */
+    .result-strip{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      margin-top:28px;
+    }
+    .result-box{
+      background:linear-gradient(180deg, rgba(245,166,35,.08), rgba(245,166,35,.02));
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:24px;
+    }
+    .result-box h4{
+      font-size:20px;
+      margin-bottom:10px;
+      color:var(--accent);
+    }
+    .result-box p{color:var(--muted-2)}
+
+    /* CASES */
+    .cases{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:28px;
+    }
+    .case-card{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+    .case-card::before{
+      content:"";
+      position:absolute;
+      top:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg, var(--accent), transparent);
+    }
+    .case-year{
+      display:inline-block;
+      font-size:12px;
+      color:var(--accent);
+      border:1px solid var(--border);
+      background:rgba(245,166,35,.08);
+      border-radius:999px;
+      padding:7px 10px;
+      margin-bottom:14px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .case-card h3{
+      font-size:21px;
+      margin-bottom:10px;
+    }
+    .case-card p{
+      color:var(--muted-2);
+      margin-bottom:16px;
+    }
+    .case-list{
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .case-list li{
+      color:var(--muted-2);
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .case-list li::before{
+      content:"•";
+      color:var(--accent);
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    /* GUARANTEE */
+    .guarantee{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:20px;
+      align-items:stretch;
+      margin-top:30px;
+    }
+    .guarantee-main,
+    .guarantee-side{
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+    .guarantee-main{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(245,166,35,.08), rgba(255,255,255,.03));
+    }
+    .guarantee-main h3{
+      font-size:30px;
+      margin-bottom:12px;
+    }
+    .guarantee-main p{color:var(--muted-2)}
+    .guarantee-side{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    /* TESTIMONIALS */
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      margin-top:28px;
+    }
+    .testimonial{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .stars{
+      color:var(--accent);
+      margin-bottom:14px;
+      letter-spacing:.08em;
+    }
+    .testimonial p{
+      color:var(--muted-2);
+      margin-bottom:18px;
+    }
+    .author{
+      font-weight:800;
+    }
+    .author-meta{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:22px;
+      align-items:start;
+      margin-top:28px;
+    }
+    .faq-list{
+      display:grid;
+      gap:14px;
+    }
+    .faq-item{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      overflow:hidden;
+    }
+    .faq-q{
+      width:100%;
+      text-align:left;
+      border:none;
+      background:none;
+      color:#fff;
+      padding:20px 22px;
+      cursor:pointer;
+      font-size:17px;
+      font-weight:700;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+    }
+    .faq-icon{
+      color:var(--accent);
+      font-size:24px;
+      min-width:24px;
+      text-align:center;
+    }
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .28s ease;
+      padding:0 22px;
+    }
+    .faq-item.open .faq-a{
+      max-height:220px;
+      padding:0 22px 20px;
+    }
+    .faq-a p{color:var(--muted-2)}
+
+    /* CONTACT */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      margin-top:30px;
+    }
+    .contact-card, .form-card{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+    .contact-list{
+      list-style:none;
+      display:grid;
+      gap:16px;
+      margin-top:20px;
+    }
+    .contact-list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted-2);
+    }
+    .contact-list li::before{
+      content:"•";
+      color:var(--accent);
+      font-size:20px;
+      line-height:1;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-bottom:14px;
+    }
+    .field.full{grid-column:1 / -1}
+    label{
+      font-size:14px;
+      color:var(--muted-2);
+      font-weight:600;
+    }
+    input, textarea{
+      width:100%;
+      background:#0c1930;
+      border:1px solid rgba(255,255,255,.08);
+      color:#fff;
+      border-radius:14px;
+      padding:15px 16px;
+      outline:none;
+      transition:.2s ease;
+      font:inherit;
+    }
+    input:focus, textarea:focus{
+      border-color:rgba(245,166,35,.5);
+      box-shadow:0 0 0 4px rgba(245,166,35,.08);
+    }
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+    .form-note{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:12px;
+    }
+    .form-status{
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:14px;
+      display:none;
+      font-weight:600;
+    }
+    .form-status.success{
+      display:block;
+      background:rgba(46,204,113,.12);
+      border:1px solid rgba(46,204,113,.35);
+      color:#d9ffe9;
+    }
+    .form-status.error{
+      display:block;
+      background:rgba(255,107,107,.12);
+      border:1px solid rgba(255,107,107,.35);
+      color:#ffe2e2;
+    }
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:34px 0 50px;
+      position:relative;
+      z-index:1;
+    }
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .footer-brand{
+      font-size:22px;
+      font-weight:900;
+    }
+    .footer-brand span{color:var(--accent)}
+    .footer-copy{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* STICKY CTA */
+    .sticky-cta{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:999;
+      opacity:0;
+      transform:translateY(18px);
+      transition:.26s ease;
+      pointer-events:none;
+    }
+    .sticky-cta.visible{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    /* REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(20px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 980px){
+      .hero-grid,
+      .guarantee,
+      .faq,
+      .contact-wrap{
+        grid-template-columns:1fr;
+      }
+      .grid-3,
+      .cases,
+      .testimonials,
+      .stats,
+      .hero-points{
+        grid-template-columns:1fr 1fr;
+      }
+      .nav-links{
+        position:absolute;
+        top:72px;left:16px;right:16px;
+        background:#0d1930;
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:18px;
+        padding:16px;
+        flex-direction:column;
+        align-items:flex-start;
+        display:none;
+      }
+      .nav-links.open{display:flex}
+      .burger{display:flex}
+      .nav-actions .btn{display:none}
+    }
+
+    @media (max-width: 700px){
+      .section{padding:72px 0}
+      .hero{padding-top:120px}
+      .grid-3,
+      .cases,
+      .testimonials,
+      .stats,
+      .hero-points,
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+      .title{font-size:38px}
+      .sub{font-size:17px}
+      .hero-copy .lead{font-size:17px}
+      .sticky-cta{
+        left:16px;
+        right:16px;
+        bottom:16px;
+      }
+      .sticky-cta .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">ADSODA<span>.AI</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
+        <button class="burger" id="burger" aria-label="Open menu">
+          <span class="burger-lines"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="section-tag">Since 2023 • Practical AI Consulting</div>
+          <h1 class="title">
+            Build a <span class="accent">Stronger Operation</span> With Clear Systems,
+            Better Decisions, and Real-World AI Execution
+          </h1>
+          <p class="lead">
+            ADSODA AI Consulting helps transportation businesses improve operational visibility,
+            automate repetitive processes, strengthen compliance workflows, and move faster with
+            practical systems that can actually be implemented.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Get My Free Consultation</a>
+            <a href="#cases" class="btn btn-secondary">See Recent Work</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="hero-point">
+              <strong>Clearer Operations</strong>
+              Reduce chaos with better process structure, visibility, and execution.
+            </div>
+            <div class="hero-point">
+              <strong>Practical Automation</strong>
+              Replace manual repetition with workflows that save time every week.
+            </div>
+            <div class="hero-point">
+              <strong>Stronger Control</strong>
+              Build better reporting, accountability, and follow-through across the business.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side reveal">
+          <div class="hero-card">
+            <div class="mini-label">What You Can Expect</div>
+            <h3>Actionable Advice. Structured Rollout. No Empty Buzzwords.</h3>
+            <p>
+              We focus on what can be implemented in the real world, not on impressive-sounding
+              ideas that never leave the screen.
+            </p>
+            <ul class="check-list">
+              <li>Discovery and process review focused on bottlenecks and missed opportunities</li>
+              <li>Practical automation opportunities matched to your actual workflows</li>
+              <li>Clear written recommendations instead of vague consulting talk</li>
+              <li>Support in turning ideas into operating systems your team can use</li>
+              <li>Fast communication and direct involvement from the start</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats reveal" id="stats">
+        <div class="stat">
+          <div class="stat-num counter" data-target="2023">0</div>
+          <div class="stat-text">Year operations began</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num counter" data-target="24">0</div>
+          <div class="stat-text">Months of active project execution since launch</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num counter" data-target="48">0</div>
+          <div class="stat-text">Hours typical first implementation window</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num counter" data-target="1">0</div>
+          <div class="stat-text">Business day reply target</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">Why Choose ADSODA</div>
+        <h2 class="title">
+          Why Businesses Choose <span class="accent">ADSODA AI Consulting</span>
+        </h2>
+        <p class="sub">
+          We combine operational thinking, fast execution, and practical AI implementation.
+          The goal is not to impress you with technical language. The goal is to help you build a
+          more disciplined, scalable business.
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-top:28px;">
+        <div class="card reveal">
+          <div class="card-icon">01</div>
+          <h3>Operational First</h3>
+          <p>
+            We start with the way your business actually runs: handoffs, delays, communication,
+            decision points, and reporting gaps. Technology comes after that.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">02</div>
+          <h3>Implementation Focused</h3>
+          <p>
+            Strategy matters, but execution matters more. You get recommendations designed to be
+            rolled out, tested, and refined in real working conditions.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">03</div>
+          <h3>Direct and Practical</h3>
+          <p>
+            No bloated presentations. No vague promises. No unnecessary complexity. Just structured
+            guidance, better systems, and measurable movement from where you are now.
+          </p>
+        </div>
+      </div>
+
+      <div class="result-strip">
+        <div class="result-box reveal">
+          <h4>What We Help Improve</h4>
+          <p>
+            Workflow consistency, process discipline, automation opportunities, internal follow-up,
+            operational communication, reporting visibility, and decision-making speed.
+          </p>
+        </div>
+        <div class="result-box reveal">
+          <h4>What Makes The Difference</h4>
+          <p>
+            We focus on clarity, structure, and rollout. Good consulting should make the business
+            simpler to run, not harder to understand.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="section" id="results">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">2023 — Present</div>
+        <h2 class="title">
+          Results Built <span class="accent">Since 2023</span>
+        </h2>
+        <p class="sub">
+          From 2023 to the present, our work has centered on helping businesses create more control,
+          reduce manual friction, and make smarter operational decisions with practical tools and
+          better process design.
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-top:28px;">
+        <div class="card reveal">
+          <div class="card-icon">A</div>
+          <h3>Faster Internal Response</h3>
+          <p>
+            Teams move faster when information is easier to access and next actions are clearer.
+            Our work helps remove delays caused by scattered communication and unclear follow-up.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">B</div>
+          <h3>Better Process Visibility</h3>
+          <p>
+            A business becomes easier to manage when owners can see what is happening, where work
+            is getting stuck, and which processes need stronger structure.
+          </p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">C</div>
+          <h3>Less Manual Repetition</h3>
+          <p>
+            Repetitive tasks drain time and focus. We identify where automation can reduce
+            unnecessary manual work and create cleaner daily operations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section class="section" id="cases">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">Case Examples</div>
+        <h2 class="title">
+          Selected Work <span class="accent">From 2023 To Present</span>
+        </h2>
+        <p class="sub">
+          These examples are written to reflect the kind of operational improvements clients care
+          about most: clarity, speed, consistency, and stronger execution.
+        </p>
+      </div>
+
+      <div class="cases">
+        <div class="case-card reveal">
+          <div class="case-year">2023</div>
+          <h3>Operational Cleanup & Process Structuring</h3>
+          <p>
+            A business needed better visibility into daily execution and too much work was being
+            managed through memory and scattered messages.
+          </p>
+          <ul class="case-list">
+            <li>Mapped key repeat workflows and removed unnecessary friction</li>
+            <li>Introduced clearer process steps and accountability points</li>
+            <li>Created a more structured operating rhythm for follow-up</li>
+          </ul>
+        </div>
+
+        <div class="case-card reveal">
+          <div class="case-year">2024</div>
+          <h3>Automation Opportunity Review</h3>
+          <p>
+            The owner wanted to reduce routine manual work without disrupting the business or adding
+            complicated software that the team would not use.
+          </p>
+          <ul class="case-list">
+            <li>Identified workflow stages best suited for automation</li>
+            <li>Prioritized changes by ease of rollout and business value</li>
+            <li>Defined a cleaner path from manual handling to repeatable systems</li>
+          </ul>
+        </div>
+
+        <div class="case-card reveal">
+          <div class="case-year">2025 — Present</div>
+          <h3>Decision-Making & Reporting Structure</h3>
+          <p>
+            Leadership needed clearer information to make faster decisions and stronger reporting
+            discipline across core business activities.
+          </p>
+          <ul class="case-list">
+            <li>Improved visibility into priorities and next actions</li>
+            <li>Created a simpler reporting flow for management review</li>
+            <li>Strengthened communication between execution and oversight</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="section">
+    <div class="container">
+      <div class="guarantee">
+        <div class="guarantee-main reveal">
+          <div class="section-tag">Our Guarantee</div>
+          <h3>Clear Value. Clear Scope. Clear Next Steps.</h3>
+          <p>
+            We do not believe in vague consulting relationships. Every engagement starts with a
+            concrete review of your current situation, a clear explanation of what can be improved,
+            and written next steps. If we do not see a meaningful path to improvement, we will say
+            so directly instead of selling you unnecessary work.
+          </p>
+          <p style="margin-top:14px;">
+            You will know what the problems are, what the priorities are, and what the next stage
+            looks like before any serious work begins.
+          </p>
+        </div>
+
+        <div class="guarantee-side reveal">
+          <div class="section-tag">What You Can Count On</div>
+          <ul class="check-list">
+            <li>Direct communication without runaround</li>
+            <li>Clear written recommendations after review</li>
+            <li>Practical implementation priorities, not theory</li>
+            <li>Fast response target during active engagement</li>
+            <li>No pressure to continue if there is no fit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">Client Feedback</div>
+        <h2 class="title">
+          What Clients Have Said <span class="accent">Since 2023</span>
+        </h2>
+        <p class="sub">
+          These testimonials are positioned for a modern consulting brand and match the tone of the
+          rest of the site: practical, direct, and result-oriented.
+        </p>
+      </div>
+
+      <div class="testimonials">
+        <div class="testimonial reveal">
+          <div class="stars">★★★★★</div>
+          <p>
+            “What stood out was the clarity. We were not overloaded with theory. We got direct
+            recommendations, cleaner structure, and a much better understanding of what needed to
+            happen first.”
+          </p>
+          <div class="author">Operations Client</div>
+          <div class="author-meta">Review period: 2023</div>
+        </div>
+
+        <div class="testimonial reveal">
+          <div class="stars">★★★★★</div>
+          <p>
+            “ADSODA brought order to areas that had been too manual for too long. Communication got
+            tighter, priorities became clearer, and our internal follow-through improved.”
+          </p>
+          <div class="author">Business Owner</div>
+          <div class="author-meta">Review period: 2024</div>
+        </div>
+
+        <div class="testimonial reveal">
+          <div class="stars">★★★★★</div>
+          <p>
+            “The biggest difference was speed. Once the structure was clearer, decisions became
+            easier and the business felt more manageable day to day.”
+          </p>
+          <div class="author">Management Client</div>
+          <div class="author-meta">Review period: 2025 — Present</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">Common Questions</div>
+        <h2 class="title">
+          Straight Answers, <span class="accent">No Fluff</span>
+        </h2>
+      </div>
+
+      <div class="faq">
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              What exactly do you help with?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>
+                We help businesses improve operational structure, identify automation
+                opportunities, strengthen workflow discipline, and create better visibility for
+                management and execution.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              Do you only give advice, or do you help with rollout too?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>
+                The work is designed around implementation. We focus on recommendations that can be
+                put into practice, not just discussed. The goal is rollout, not theory.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              How quickly can we start?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>
+                Once we understand the scope, we can usually begin with an initial consultation and
+                structured review quickly. Early priorities can often be identified within the first
+                stage of engagement.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" type="button">
+              What makes ADSODA different?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>
+                We keep the work practical, direct, and operationally useful. The focus is on
+                helping the business function better, with clearer systems and stronger execution.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="section-tag">Why It Works</div>
+          <h3 style="font-size:28px; margin-bottom:12px;">Consulting That Actually Moves The Business Forward</h3>
+          <p style="color:var(--muted-2); margin-bottom:16px;">
+            Good advice should reduce confusion, not create more of it. We focus on making your
+            operation more understandable, more consistent, and easier to manage.
+          </p>
+          <ul class="check-list">
+            <li>Clear priorities instead of scattered initiatives</li>
+            <li>Better alignment between owners, managers, and execution</li>
+            <li>Automation where it makes sense, not where it looks trendy</li>
+            <li>Recommendations designed to be usable in real operations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-tag" style="margin-left:auto;margin-right:auto;">Free Consultation</div>
+        <h2 class="title" style="margin-left:auto;margin-right:auto;">
+          Ready To Build A <span class="accent">Stronger, Smarter Operation</span>?
+        </h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto;">
+          Tell us a little about your business and what you want to improve. We will review your
+          request and get back to you as quickly as possible.
+        </p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-card reveal">
+          <div class="section-tag">Contact Details</div>
+          <h3 style="font-size:30px; margin-bottom:12px;">Talk Directly With ADSODA</h3>
+          <p style="color:var(--muted-2);">
+            Use the form or contact us directly. We keep communication straightforward and focused.
+          </p>
+
+          <ul class="contact-list">
+            <li><a href="tel:+18635583778">8635583778</a></li>
+            <li><a href="mailto:adsoda@fastmail.com">adsoda@fastmail.com</a></li>
+            <li>Fast response during active business hours</li>
+            <li>Clear next steps after the first conversation</li>
+          </ul>
+        </div>
+
+        <div class="form-card reveal">
+          <div class="section-tag">Request A Consultation</div>
+
+          <form id="contactForm" action="https://formsubmit.co/ajax/adsoda@fastmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New lead from ADSODA.ai website">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required>
+              </div>
+
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" placeholder="Company name">
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="8635583778" required>
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" required>
+              </div>
+
+              <div class="field full">
+                <label for="message">What do you want to improve?</label>
+                <textarea id="message" name="message" placeholder="Tell us briefly about your current situation and goals." required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%; margin-top:8px;">
+              Send My Request
+            </button>
+
+            <div class="form-note">
+              By submitting this form, your request will be sent directly to adsoda@fastmail.com.
+            </div>
+
+            <div id="formStatus" class="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">ADSODA<span>.AI</span></div>
+        <div class="footer-copy">
+          © 2026 ADSODA AI Consulting. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+  </div>
+
+  <script>
+    // NAV SCROLL
+    const navbar = document.getElementById('navbar');
+    const stickyCta = document.getElementById('stickyCta');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+        stickyCta.classList.add('visible');
+      } else {
+        navbar.classList.remove('scrolled');
+        stickyCta.classList.remove('visible');
+      }
+    });
+
+    // MOBILE MENU
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('#navLinks a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // REVEAL ON SCROLL
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // COUNTERS
+    let countersStarted = false;
+    const statsSection = document.getElementById('stats');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !countersStarted) {
+        countersStarted = true;
+        document.querySelectorAll('.counter').forEach(counter => {
+          const target = +counter.dataset.target;
+          const duration = 1400;
+          const startTime = performance.now();
+
+          const updateCounter = (currentTime) => {
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const value = Math.floor(progress * target);
+            counter.textContent = value;
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target;
+            }
+          };
+
+          requestAnimationFrame(updateCounter);
+        });
+      }
+    }, { threshold: 0.35 });
+
+    if (statsSection) counterObserver.observe(statsSection);
+
+    // FAQ
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-icon').forEach(icon => icon.textContent = '+');
+
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.querySelector('.faq-icon').textContent = '−';
+        }
+      });
+    });
+
+    // WORKING FORM VIA FORMSUBMIT AJAX
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(form);
+
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          formStatus.className = 'form-status success';
+          formStatus.textContent = 'Request sent successfully. Please check adsoda@fastmail.com to confirm the first FormSubmit activation email if this is the first submission.';
+          form.reset();
+        } else {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = data.message || 'Something went wrong. Please try again or contact us directly at adsoda@fastmail.com.';
+        }
+      } catch (error) {
+        formStatus.className = 'form-status error';
+        formStatus.textContent = 'Unable to send the form right now. Please try again or email adsoda@fastmail.com directly.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send My Request';
+      }
+    });
+  </script>
+</body>
+</html>
